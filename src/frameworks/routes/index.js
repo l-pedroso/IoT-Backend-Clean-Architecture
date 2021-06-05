@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const dependences = require('../../contracts/config/dependencies');
-const UserController = require('../../controllers/user');
-const Auth = require('../../controllers/auth');
+const Auth = require('../../services/authentication/auth');
+const userRoutes = require('./user');
+const dependencies = require('../../contracts/config/dependencies');
 
 
-const user = new UserController(dependences);
-const auth = Auth();
-router.use(auth);
+const auth = new Auth();
 
-router.post('/user/add', user.add);
-
+//router.use(auth.checkJwt);
+router.use('/user', userRoutes(dependencies));
 router.use( function (err, req, res, next) {
   res.status(500).json({ERROR:err.message});
 });

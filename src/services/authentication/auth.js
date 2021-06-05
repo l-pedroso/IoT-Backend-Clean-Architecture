@@ -1,5 +1,6 @@
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
+const axios = require('axios').default;
 const AuthenticationContract = require('../../contracts/authentication'); 
 
 module.exports = class Auth extends AuthenticationContract{
@@ -8,8 +9,8 @@ module.exports = class Auth extends AuthenticationContract{
     super();
   }
 
-  checkJwt(){
-    return jwt({
+  async checkJwt(){
+     jwt({
       // Dynamically provide a signing key based on the kid in the header and the signing keys provided by the JWKS endpoint
       secret: jwksRsa.expressJwtSecret({
         cache: true,
@@ -34,9 +35,20 @@ module.exports = class Auth extends AuthenticationContract{
     });
   }
 
-  getUserInfo(jwt){ 
-
-
+  async getUserInfo(jwt){ 
+    try{
+      const response = await axios({
+        method: 'post',
+        url: process.env.AUTH_PROVIDER,
+        headers:{
+          'Authorization': jwt
+        },
+      });
+      return response;
+    }
+    catch(e){
+      throw e;
+    }
   }
 }
  

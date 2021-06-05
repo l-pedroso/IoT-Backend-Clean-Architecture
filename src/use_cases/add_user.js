@@ -1,29 +1,15 @@
+const User = require('../entities/user');
 
-const newUser = async (UserInfo, UserRepository) => {
-    
-    if(UserInfo.email_verified === false){
-        throw new Error('email not verified');
-    }
-    
+module.exports = async (userInfo, UserRepository) => { 
+    const user = new User(userInfo);
+    const respository = new UserRepository();
+
     try{
-        const info = await UserRepository.findByEmail(UserInfo.email);
-
-        if(info != null){
-    
-            throw new Error('user aready in database');
-        }
-    
-        await UserRepository.add(UserInfo);
-
+        const result = await respository.findByEmail(user.email);
+        if(result != null) throw new Error('user aready in database');
+        await repository.add(user);
     }
     catch(e){
-        throw(e);
-    }
-
-
-    
-    
-    
+        throw e;
+    }    
 }
-
-exports.addUser = newUser;
