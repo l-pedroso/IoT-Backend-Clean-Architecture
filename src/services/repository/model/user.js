@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 userSchema = new Schema({
-    userEmail: {
-        type: String,
-        required: true,
-    },
 
     firstName: {
         type: String,
@@ -15,11 +11,14 @@ userSchema = new Schema({
         type: String,
     },
 
+    email: {
+        type: String,
+        required: true,
+    },
+
     devices:{
         type: Array,
-    }
-        
-            
+    }    
 });
 
 
