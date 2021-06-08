@@ -10,7 +10,7 @@ const auth = new Auth();
 //router.use(auth.checkJwt);
 router.use('/user', userRoutes(dependencies));
 router.use( function (err, req, res, next) {
-  res.status(500).json({ERROR:err.message});
+  res.status(500).json({ERROR:err.message, STACK:err.stack});
 });
 
 module.exports = router;

@@ -6,7 +6,7 @@ module.exports = class AuthenticationContract{
         return Promise.reject(new Error('not implemented'));
     }
 
-    getUserInfo(){
+    getUserInfo(jwt){
         return Promise.reject(new Error('not implemented'));
     }
 

@@ -1,4 +1,4 @@
-const UserRepository = require('../../services/repository/user_repository');
+const UserRepository = require('../../services/repository/userRepository');
 const Auth = require('../../services/authentication/auth');
 
 

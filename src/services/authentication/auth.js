@@ -2,6 +2,7 @@ const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const axios = require('axios').default;
 const AuthenticationContract = require('../../contracts/authentication'); 
+const UserInfo = require('../../models/userInfo');
 
 module.exports = class Auth extends AuthenticationContract{
 
@@ -44,7 +45,8 @@ module.exports = class Auth extends AuthenticationContract{
           'Authorization': jwt
         },
       });
-      return response;
+      const data = response.data;
+      return new UserInfo(data.given_name, data.family_name, data.email, data.email_verified);
     }
     catch(e){
       throw e;

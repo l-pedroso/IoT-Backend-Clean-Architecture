@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../../controllers/user');
+const UserController = require('../../controllers/userController');
 
 
 
 module.exports = (dependencies) => {
-    const user = new User(dependencies);
+    const user = new UserController(dependencies);
     router.post('/add', user.add.bind(user));
     return router;
 }
