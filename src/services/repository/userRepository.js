@@ -5,10 +5,23 @@ module.exports = class UserRepository extends UserRepositoryContract{
     constructor(){
         super();
     }
-    async add(data){
+
+        
+    async findByEmail(userEmail){
+        const query = await UserModel.findOne({email: userEmail});
+        if(!query) return null;
+        return query;         
+    }
+
+    
+    async add(userInfo){
         try{
-            const user = new UserModel({firstName: data.firstName, lastName: data.lastName, email: data.email})
+            const query = await this.findByEmail(userInfo.email);
+            if(query != null) throw new Error('user aready in database');
+
+            const user = new UserModel({firstName:userInfo.firstName, lastName:userInfo.lastName, email: userInfo.email});
             const result = await user.save();
+
             if(result != user){
                throw new Error('database error');
              }
@@ -16,11 +29,19 @@ module.exports = class UserRepository extends UserRepositoryContract{
             throw e;
         }
     }
-    
-    async findByEmail(userEmail){
-        const query = await UserModel.findOne({email: userEmail});
-        if(!query) return null;
-        return query;   
-          
+
+
+
+    async update(userInfo){
+        try{
+            const user = await this.findByEmail(userInfo.email);
+            if(user === null) throw new Error('user not found');
+            user.firstName = userInfo.firstName;
+            user.lastName = userInfo.lastName;
+            await user.save();
+        }
+        catch(e){
+            throw e;
+        }
     }
 }           

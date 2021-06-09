@@ -1,13 +1,12 @@
 const User = require('../entities/user');
 
-module.exports = async (userInfo, UserRepository) => { 
+module.exports = async(userInfo, UserRepository) => {
     const user = new User(userInfo.firstName, userInfo.lastName, userInfo.email);
-    const repository = new UserRepository();
-
+    repository = new UserRepository();
     try{
-        await repository.add(user);
+        await repository.update(user);
     }
     catch(e){
         throw e;
-    }    
+    }
 }
