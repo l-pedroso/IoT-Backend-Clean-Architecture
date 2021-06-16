@@ -21,9 +21,8 @@ module.exports = class UserController{
     }
 
     async add(req, res, next){
-        const userInfo = await this._getInfo(req.get('authorization'));
-
         try{
+            const userInfo = await this._getInfo(req.get('authorization'));
             if(userInfo.email_verified === false) throw new Error('email not verified');
             await addUser(userInfo, this.UserRepository);
             res.json({Sucess: 'User added'});
@@ -34,15 +33,13 @@ module.exports = class UserController{
     }
 
     async update(req, res, next){
-        
-        const userInfo = await this._getInfo(req.get('authorization'));
-        const updatedUser = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: userInfo.email,
-        };
-           
         try{
+            const userInfo = await this._getInfo(req.get('authorization'));
+            const updatedUser = {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: userInfo.email,
+            };
             await updateUser(updatedUser, this.UserRepository);
             res.json({Sucess: 'User updated'});
         }
