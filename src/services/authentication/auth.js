@@ -10,8 +10,8 @@ module.exports = class Auth extends AuthenticationContract{
     super();
   }
 
-  async checkJwt(err, req, res, next){
-     jwt({
+  checkJwt(){
+     return jwt({
       // Dynamically provide a signing key based on the kid in the header and the signing keys provided by the JWKS endpoint
       secret: jwksRsa.expressJwtSecret({
         cache: true,

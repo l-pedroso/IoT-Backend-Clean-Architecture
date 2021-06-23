@@ -5,9 +5,9 @@ const userRoutes = require('./user');
 const dependencies = require('../../contracts/config/dependencies');
 
 
-const auth = new Auth();
+const checkJwt = new Auth().checkJwt();
 
-router.use(auth.checkJwt);
+router.use(checkJwt);
 router.use('/user', userRoutes(dependencies));
 router.use( function (err, req, res, next) {
   res.status(500).json({ERROR:err.message, STACK:err.stack});
