@@ -9,7 +9,7 @@ module.exports = class UserRepository extends UserRepositoryContract{
         
     async findByEmail(userEmail){
         const query = await UserModel.findOne({email: userEmail});
-        if(!query) return null;
+        if(!query) throw new Error('User not found');
         return query;         
     }
 
