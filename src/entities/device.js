@@ -1,7 +1,8 @@
 module.exports = class Device{
 
-    constructor(id, name){
-        this.uuid =  id;
-        this.name = name;
+    constructor(id, type, token){
+        this.deviceID =  id;
+        this.typeID = type;
+        this.authToken = token;
     }
 }

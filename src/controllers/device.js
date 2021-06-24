@@ -2,8 +2,7 @@
 module.exports = class DeviceController{
 
     constructor(dependencies){
-        this.mqttBrokerService = dependencies.mqttBrokerService;
-        this.UserRepository = dependencies.UserRepository;
+        this.dependencies = dependencies;
     }
 
     async _getInfo(token){

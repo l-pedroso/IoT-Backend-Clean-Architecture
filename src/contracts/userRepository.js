@@ -9,5 +9,9 @@ module.exports = class UserRepositoryContract {
         return Promise.reject(new Error('not implemented 2'));
     }
 
+    update(userInfo){
+        return Promise.reject(new Error('not implemented 2'));
+    }
+
 
 }
