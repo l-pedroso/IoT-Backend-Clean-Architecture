@@ -1,6 +1,4 @@
 const Device = require('../entities/device');
-const User = require('../entities/user');
-
 
 module.exports = async (userInfo, deviceInfo, {UserRepository, DeviceRepository, uuid, mqttBrokerService}) => {
     const deviceRepository = new DeviceRepository();
@@ -9,7 +7,7 @@ module.exports = async (userInfo, deviceInfo, {UserRepository, DeviceRepository,
     try{
         const query = await userRespository.findByEmail(userInfo.email);
         const {deviceID, typeId, authToken} = await mqttBrokerService.add(uuid(), deviceInfo.type);
-        const device = new Device(deviceID, typeId, authToken);
+        const device = new Device(deviceID, deviceInfo.name, typeId, authToken);
         await deviceRepository.add(query.email, device);
 
     }catch(e){

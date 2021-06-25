@@ -1,3 +1,4 @@
+const addDevice = require('../useCases/add_device');
 
 module.exports = class DeviceController{
 
@@ -18,13 +19,12 @@ module.exports = class DeviceController{
 
     async add(req, res, next){
         try{
-            const userInfo = await this._getInfo(req.get('authorization'));            
-
+            const userInfo = await this._getInfo(req.get('authorization'));  
+            const deviceInfo = req.body.deviceName;          
+            await addDevice(userInfo, deviceInfo, this.dependencies);
+            res.json({Success: 'device added'});
         }catch(e){
-
+            next(e);
         }
-        
-        
-
     }
 }

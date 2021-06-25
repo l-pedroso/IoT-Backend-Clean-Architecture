@@ -41,7 +41,7 @@ module.exports = class UserController{
                 email: userInfo.email,
             };
             await updateUser(updatedUser, this.UserRepository);
-            res.json({Sucess: 'User updated'});
+            res.json({Success: 'User updated'});
         }
         catch(e){
             next(e);
