@@ -20,9 +20,12 @@ module.exports = class DeviceController{
     async add(req, res, next){
         try{
             const userInfo = await this._getInfo(req.get('authorization'));  
-            const deviceInfo = req.body.deviceName;          
-            await addDevice(userInfo, deviceInfo, this.dependencies);
-            res.json({Success: 'device added'});
+            const deviceInfo = {
+                name: req.body.deviceName,
+                type: req.body.deviceType,
+            }         
+            const result = await addDevice(userInfo, deviceInfo, this.dependencies);
+            res.json({Success: 'device added', deviceInfo: result});
         }catch(e){
             next(e);
         }

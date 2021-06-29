@@ -1,7 +1,7 @@
 module.exports = class DeviceRepositoryContract {
     constructor() { }
 
-    add(userInfo) {
+    add(device) {
         return Promise.reject(new Error('not implemented 1'));
     }
 }

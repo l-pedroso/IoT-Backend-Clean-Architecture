@@ -27,7 +27,7 @@ module.exports = class UserRepository extends UserRepositoryContract{
              }
         }catch(e){
             throw e;
-        }
+        } 
     }
 
 
@@ -35,7 +35,6 @@ module.exports = class UserRepository extends UserRepositoryContract{
     async update(userInfo){
         try{
             const user = await this.findByEmail(userInfo.email);
-            if(user === null) throw new Error('user not found');
             user.firstName = userInfo.firstName;
             user.lastName = userInfo.lastName;
             await user.save();

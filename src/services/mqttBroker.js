@@ -22,7 +22,7 @@ module.exports = class mqttBroker extends MqttBrokerContract{
             });
 
             return{
-                deviceID: response.deviceId,
+                deviceId: response.deviceId,
                 deviceType: response.typeId,
                 deviceToken: response.authToken
             }
