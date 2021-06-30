@@ -7,7 +7,7 @@ module.exports = class DeviceController{
     }
 
     async _getInfo(token){
-        const auth = new this.Auth();   
+        const auth = new this.dependencies.AuthService();   
         try{
             const userInfo = await auth.getUserInfo(token);
             return userInfo;

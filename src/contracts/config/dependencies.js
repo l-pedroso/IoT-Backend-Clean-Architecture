@@ -10,5 +10,5 @@ module.exports = {
     DeviceRepository:  DeviceRepository,
     AuthService: Auth,
     uuid: uuid,
-    mqttBrokerService: mqttBroker
+    MqttBrokerService: mqttBroker
 }

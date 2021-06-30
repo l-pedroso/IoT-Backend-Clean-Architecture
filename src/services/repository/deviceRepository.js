@@ -14,12 +14,12 @@ module.exports = class DeviceRepository extends DeviceRepositoryContract{
                 typeId: deviceInfo.typeId,
                 authToken: deviceInfo.authToken,
                 userEmail: deviceInfo.userEmail,
-            })
+            });
     
            const result =  await device.save();
            if(result != device){
             throw new Error('database error');
-          }
+          };
         }
         catch(e){
             throw e;

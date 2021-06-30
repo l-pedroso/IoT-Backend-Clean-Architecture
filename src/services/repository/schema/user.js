@@ -15,10 +15,6 @@ userSchema = new Schema({
         type: String,
         required: true,
     },
-
-    devices:{
-        type: Array,
-    }    
 });
 
 

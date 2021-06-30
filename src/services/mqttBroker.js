@@ -20,11 +20,10 @@ module.exports = class mqttBroker extends MqttBrokerContract{
                     deviceId: deviceID,
                 }
             });
-
             return{
-                deviceId: response.deviceId,
-                deviceType: response.typeId,
-                deviceToken: response.authToken
+                deviceId: response.data.deviceId,
+                deviceType: response.data.typeId,
+                deviceToken: response.data.authToken
             }
         }
         catch(e){
