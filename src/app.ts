@@ -16,11 +16,11 @@ app.use(express.urlencoded({ extended: false }));
 mongoose.promise = global.Promise;
 mongoose.connect(process.env.MONGO_CONN_URL, { useNewUrlParser: true , useCreateIndex: true}).then(() => {
     console.log('MongoDB --  database connection established successfully!');
-}).catch(err => {
+}).catch((err: any) => {
     console.log('Connection to database error' + err);
 });
     
-mongoose.connection.on('error', err => {
+mongoose.connection.on('error', (err:any) => {
     console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
     process.exit();
 });
