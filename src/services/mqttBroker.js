@@ -20,6 +20,8 @@ module.exports = class mqttBroker extends MqttBrokerContract{
                     deviceId: deviceID,
                 }
             });
+
+            console.log(response.data);
             return{
                 deviceId: response.data.deviceId,
                 deviceType: response.data.typeId,
