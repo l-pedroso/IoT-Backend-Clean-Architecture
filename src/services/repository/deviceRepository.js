@@ -1,4 +1,4 @@
-const DeviceRepositoryContract = require('../../contracts/deviceRepository');
+const DeviceRepositoryContract = require('../../Interfaces/IRepository');
 const DeviceModel = require('./schema/device');
 
 module.exports = class DeviceRepository extends DeviceRepositoryContract{

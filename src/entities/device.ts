@@ -1,10 +1,16 @@
-module.exports = class Device{
+export default class Device {
 
-    constructor(id, name, type, token, email){
-        this.deviceId =  id;
-        this.deviceName = name;
-        this.typeId = type;
-        this.authToken = token;
-        this.userEmail = email;
+    id: string;
+    name: string;
+    type: string;
+    token: string;
+    email: string;
+
+    constructor(id: string, name: string, type: string, token: string, email: string) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.token = token;
+        this.email = email;
     }
 }
